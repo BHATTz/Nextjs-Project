@@ -1,6 +1,4 @@
 import Image from "next/image";
-
-("use client");
 import { useEffect, useState } from "react";
 
 interface User {
