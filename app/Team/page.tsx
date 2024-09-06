@@ -1,32 +1,36 @@
+"use client";
 import { useEffect, useState } from "react";
 
-// Define a type for the user data
 interface User {
-  id: number; // Changed to `number` to match the API response
+  id: number;
   name: string;
   role: string;
-  profilePicture?: string; // Optional if you plan to include profile pictures
+  profilePicture: string;
 }
 
-const Team: React.FC = () => {
+const TeamPage = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/users/route");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data: User[] = await response.json();
+        const response = await fetch("/api/Teams/route");
+        const data = await response.json();
         setUsers(data);
+        setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch users:", error);
+        console.error("Error fetching team data:", error);
+        setLoading(false);
       }
     };
 
     fetchUsers();
   }, []);
+
+  if (loading) {
+    return <p className="text-center text-xl">Loading...</p>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -40,7 +44,7 @@ const Team: React.FC = () => {
             className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 flex items-center space-x-4"
           >
             <img
-              src={user.profilePicture || "https://dummyimage.com/80x80"} // Fallback image if profilePicture is not provided
+              src={user.profilePicture}
               alt={`${user.name}'s profile`}
               className="w-16 h-16 rounded-full object-cover"
             />
@@ -57,4 +61,4 @@ const Team: React.FC = () => {
   );
 };
 
-export default Team;
+export default TeamPage;
