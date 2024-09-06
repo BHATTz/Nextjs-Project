@@ -1,4 +1,6 @@
-"use client";
+import Image from "next/image";
+
+("use client");
 import { useEffect, useState } from "react";
 
 interface User {
@@ -43,10 +45,12 @@ const TeamPage = () => {
             key={user.id}
             className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 flex items-center space-x-4"
           >
-            <img
+            <Image
               src={user.profilePicture}
               alt={`${user.name}'s profile`}
-              className="w-16 h-16 rounded-full object-cover"
+              width={64} // Define width explicitly
+              height={64} // Define height explicitly
+              className="rounded-full object-cover"
             />
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-2">
