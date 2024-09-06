@@ -15,7 +15,7 @@ const TeamPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/Teams/route");
+        const response = await fetch("/api/Teams"); // Use the correct path here
         const data = await response.json();
         setUsers(data);
         setLoading(false);
