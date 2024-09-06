@@ -1,3 +1,5 @@
+"use client"; // Ensure this is at the top
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -15,7 +17,7 @@ const TeamPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/Teams"); // Use the correct path here
+        const response = await fetch("/api/Teams"); // Correct API path
         const data = await response.json();
         setUsers(data);
         setLoading(false);

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // Mock team data
-const team = [
+const Team = [
   {
     id: 1,
     name: "Sarthak Bhatt",
@@ -29,5 +29,5 @@ const team = [
 ];
 
 export async function GET() {
-  return NextResponse.json(team);
+  return NextResponse.json(Team);
 }
